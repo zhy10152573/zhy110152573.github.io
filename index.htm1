@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>宝贝专属备忘录</title>
+    <meta charset="UTF-8">
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body { 
+            background: #fdf2f8; 
+            font-family: "微软雅黑", sans-serif;
+            padding: 60px;
+        }
+        .container { 
+            max-width: 600px; 
+            margin: 0 auto; 
+            background: white;
+            padding: 40px;
+            border-radius: 15px;
+            box-shadow: 0 0 20px rgba(214, 51, 132, 0.1);
+        }
+        h1 { 
+            color: #d63384; 
+            text-align: center;
+            margin-bottom: 30px;
+            font-size: 28px;
+        }
+        .pwd-box { 
+            text-align: center;
+            margin-bottom: 20px;
+        }
+        #pwdInput { 
+            padding: 12px 20px;
+            font-size: 18px;
+            border: 2px solid #f0c0d6;
+            border-radius: 8px;
+            width: 70%;
+            margin-right: 10px;
+        }
+        #unlockBtn { 
+            padding: 12px 25px;
+            background: #d63384;
+            color: white;
+            border: none;
+            border-radius: 8px;
+            font-size: 18px;
+            cursor: pointer;
+        }
+        #unlockBtn:hover { background: #c22568; }
+        #noteContent { 
+            margin-top: 30px;
+            padding: 20px;
+            background: #fef7fb;
+            border-radius: 10px;
+            font-size: 17px;
+            color: #333;
+            line-height: 1.8;
+            display: none;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>🔒 宝贝专属备忘录</h1>
+        <div class="pwd-box">
+            <input type="text" id="pwdInput" placeholder="请输入解锁密码（只有宝贝能打开）">
+            <button id="unlockBtn" onclick="checkPassword()">解锁</button>
+        </div>
+        <div id="noteContent"></div>
+    </div>
+
+    <script>
+        // 专属密码（和原C代码一致：20250501）
+        const correctPwd = "20250501";
+        // 专属文案
+        const noteContent = `致我最爱的宝贝：
+**************************************************
+1. 每天要记得吃早餐，不要只吃蓝莓～
+2. 天气变凉了，一定要多穿一点
+3. 不开心的时候就告诉我，我带你去吃好吃的
+4. 记住，你永远是最漂亮的宝贝
+5. 要少熬夜哟
+**************************************************`;
+
+        // 密码验证逻辑
+        function checkPassword() {
+            const pwd = document.getElementById("pwdInput").value.trim();
+            if (!pwd) {
+                alert("请输入密码呀～");
+                return;
+            }
+            if (pwd === correctPwd) {
+                document.getElementById("noteContent").innerText = noteContent;
+                document.getElementById("noteContent").style.display = "block";
+            } else {
+                alert("密码错误～\n只有我的宝贝知道答案");
+            }
+        }
+    </script>
+</body>
+</html>
